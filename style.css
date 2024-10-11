@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+}
+form {
+  width: 1000px;
+  margin-top: 30px;
+}
+
+div,
+h2 {
+  margin: 1px;
+  padding: 1px;
+}
+h2 {
+  font-size: 1em;
+}
+form {
+  font-family: Tahoma;
+}
+.columns {
+  display: flex;
+}
+textarea,
+input[type='text'],
+input[type='number'] {
+  min-height: 1.5em;
+  width: 100%;
+}
+.sticky {
+  position: fixed;
+  left: -1px;
+  top: -1px;
+  width: 100%;
+  background-color: white;
+  height: 28px;
+}
+.print-page {
+  margin: 0;
+  width: 8.5in;
+  height: 11in;
+  page-break-after: always;
+  border: solid black 1px;
+}
+@page {
+  size: Letter portrait;
+  margin: 0;
+}
+@media print {
+  form {
+    display: none;
+  }
+}
