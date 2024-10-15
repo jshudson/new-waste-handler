@@ -1,10 +1,28 @@
+//#region "Imports"
 import hazardousLabel from './src/hazardousLabel.js';
 import nonhazardousLabel from './src/nonhazardousLabel.js';
 import labelPage from './src/labelPage.js';
 import wasteForm from './src/wasteForm.js';
 import { WasteData } from './src/utils.js';
-
+//#endregion "Imports"
+//#region "HTML Elements"
 const form = document.getElementById('waste-form') as HTMLFormElement;
+const svgBox = document.getElementById('svg-box') as HTMLDivElement;
+const currentID = document.getElementById('current') as HTMLSelectElement;
+const nextButton = document.getElementById('next') as HTMLInputElement;
+const prevButton = document.getElementById('prev') as HTMLInputElement;
+const clearButton = document.getElementById('clear') as HTMLInputElement;
+const deleteButton = document.getElementById('delete') as HTMLInputElement;
+const numPages = document.getElementById('num-pages') as HTMLSpanElement;
+const overwriteButton = document.getElementById(
+  'overwrite'
+) as HTMLInputElement;
+//#endregion "HTML Elements"
+
+//Globals
+let currentIndex = 0;
+let submittedWastes: WasteData[] = [];
+
 form.addEventListener('change', (e) => {
   const preview = document.getElementById(
     'label-preview'
@@ -16,48 +34,39 @@ form.addEventListener('change', (e) => {
     : nonhazardousLabel(previewData);
 });
 
-const svgBox = document.getElementById('svg-box') as HTMLDivElement;
-
-const generateButton = document.getElementById('generate') as HTMLInputElement;
-const currentID = document.getElementById('current') as HTMLInputElement;
-const nextButton = document.getElementById('next') as HTMLInputElement;
-const prevButton = document.getElementById('prev') as HTMLInputElement;
-const clearButton = document.getElementById('clear') as HTMLInputElement;
-const deleteButton = document.getElementById('delete') as HTMLInputElement;
-const numPages = document.getElementById('num-pages') as HTMLSpanElement;
-const overwriteButton = document.getElementById(
-  'overwrite'
-) as HTMLInputElement;
-let currentIndex = 0;
-
-let submittedWastes: WasteData[] = [];
 clearButton.addEventListener('click', (e) => {
   clearForm();
 });
-const clearForm = () => {
-  form.reset();
-  currentID.value = 'New';
-  currentIndex = submittedWastes.length;
-};
+currentID.addEventListener('change', (e) => {
+  console.log(currentID.value);
+  currentIndex = Number(currentID.value);
+  if(currentIndex == -1) {
+    clearForm()
+    return
+  }
+  fillFormFromWasteData(submittedWastes[currentIndex]);
+});
 deleteButton.addEventListener('click', (e) => {
   if (submittedWastes.length == 0 || currentID.value == 'New') return;
   submittedWastes.splice(currentIndex, 1);
 
   if (submittedWastes.length == 0) {
     clearForm();
+    populateSelect()
     return;
   }
   if (currentIndex >= submittedWastes.length) {
     currentIndex = submittedWastes.length - 1;
   }
   fillFormFromWasteData(submittedWastes[currentIndex]);
-  currentID.value = String(currentIndex + 1);
+  populateSelect()
+  currentID.value = String(currentIndex);
 });
 nextButton.addEventListener('click', (e) => {
   if (currentIndex < submittedWastes.length - 1) {
     currentIndex++;
     fillFormFromWasteData(submittedWastes[currentIndex]);
-    currentID.value = String(currentIndex + 1);
+    currentID.value = String(currentIndex);
   }
 });
 
@@ -65,7 +74,7 @@ prevButton.addEventListener('click', (e) => {
   if (currentIndex > 0) {
     currentIndex--;
     fillFormFromWasteData(submittedWastes[currentIndex]);
-    currentID.value = String(currentIndex + 1);
+    currentID.value = String(currentIndex);
   }
 });
 overwriteButton.addEventListener('click', (e) => {
@@ -79,10 +88,24 @@ form.addEventListener('submit', function (e) {
   const data = getWasteDataFromForm(form);
   submittedWastes.push(data);
   form.reset();
-  currentID.value = 'New';
+  populateSelect();
+  currentID.value = '-1';
   currentIndex = submittedWastes.length;
   generatePages();
 });
+
+const clearForm = () => {
+  form.reset();
+  currentID.value = '-1';
+  currentIndex = submittedWastes.length;
+};
+
+const populateSelect = () => {
+  currentID.innerHTML = '<option value="-1">New</option>';
+  submittedWastes.map((e, i) => {
+    currentID.add(new Option(e['waste-identifier'], String(i)));
+  });
+};
 
 const fillFormFromWasteData = (data: WasteData): undefined => {
   Object.entries(data).forEach(([key, value]) => {
@@ -104,6 +127,7 @@ const getWasteDataFromForm = (form: HTMLFormElement): WasteData => {
   const formFields = form.querySelectorAll('*[id]');
 
   formFields.forEach((e) => {
+    if (e.nodeName == 'SELECT') return;
     const inputElement = e as HTMLInputElement;
     const key = inputElement.id;
     if (inputElement.type == 'button') return;
@@ -139,11 +163,6 @@ const getWasteDataFromForm = (form: HTMLFormElement): WasteData => {
   });
   return data;
 };
-
-generateButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  generatePages();
-});
 
 const generatePages = () => {
   svgBox.innerHTML = '';

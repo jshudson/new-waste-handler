@@ -1,8 +1,23 @@
+//#region "Imports"
 import hazardousLabel from './src/hazardousLabel.js';
 import nonhazardousLabel from './src/nonhazardousLabel.js';
 import labelPage from './src/labelPage.js';
 import wasteForm from './src/wasteForm.js';
+//#endregion "Imports"
+//#region "HTML Elements"
 const form = document.getElementById('waste-form');
+const svgBox = document.getElementById('svg-box');
+const currentID = document.getElementById('current');
+const nextButton = document.getElementById('next');
+const prevButton = document.getElementById('prev');
+const clearButton = document.getElementById('clear');
+const deleteButton = document.getElementById('delete');
+const numPages = document.getElementById('num-pages');
+const overwriteButton = document.getElementById('overwrite');
+//#endregion "HTML Elements"
+//Globals
+let currentIndex = 0;
+let submittedWastes = [];
 form.addEventListener('change', (e) => {
     const preview = document.getElementById('label-preview');
     const previewData = getWasteDataFromForm(form);
@@ -11,51 +26,46 @@ form.addEventListener('change', (e) => {
         ? hazardousLabel(previewData)
         : nonhazardousLabel(previewData);
 });
-const svgBox = document.getElementById('svg-box');
-const generateButton = document.getElementById('generate');
-const currentID = document.getElementById('current');
-const nextButton = document.getElementById('next');
-const prevButton = document.getElementById('prev');
-const clearButton = document.getElementById('clear');
-const deleteButton = document.getElementById('delete');
-const numPages = document.getElementById('num-pages');
-const overwriteButton = document.getElementById('overwrite');
-let currentIndex = 0;
-let submittedWastes = [];
 clearButton.addEventListener('click', (e) => {
     clearForm();
 });
-const clearForm = () => {
-    form.reset();
-    currentID.value = 'New';
-    currentIndex = submittedWastes.length;
-};
+currentID.addEventListener('change', (e) => {
+    console.log(currentID.value);
+    currentIndex = Number(currentID.value);
+    if (currentIndex == -1) {
+        clearForm();
+        return;
+    }
+    fillFormFromWasteData(submittedWastes[currentIndex]);
+});
 deleteButton.addEventListener('click', (e) => {
     if (submittedWastes.length == 0 || currentID.value == 'New')
         return;
     submittedWastes.splice(currentIndex, 1);
     if (submittedWastes.length == 0) {
         clearForm();
+        populateSelect();
         return;
     }
     if (currentIndex >= submittedWastes.length) {
         currentIndex = submittedWastes.length - 1;
     }
     fillFormFromWasteData(submittedWastes[currentIndex]);
-    currentID.value = String(currentIndex + 1);
+    populateSelect();
+    currentID.value = String(currentIndex);
 });
 nextButton.addEventListener('click', (e) => {
     if (currentIndex < submittedWastes.length - 1) {
         currentIndex++;
         fillFormFromWasteData(submittedWastes[currentIndex]);
-        currentID.value = String(currentIndex + 1);
+        currentID.value = String(currentIndex);
     }
 });
 prevButton.addEventListener('click', (e) => {
     if (currentIndex > 0) {
         currentIndex--;
         fillFormFromWasteData(submittedWastes[currentIndex]);
-        currentID.value = String(currentIndex + 1);
+        currentID.value = String(currentIndex);
     }
 });
 overwriteButton.addEventListener('click', (e) => {
@@ -68,10 +78,22 @@ form.addEventListener('submit', function (e) {
     const data = getWasteDataFromForm(form);
     submittedWastes.push(data);
     form.reset();
-    currentID.value = 'New';
+    populateSelect();
+    currentID.value = '-1';
     currentIndex = submittedWastes.length;
     generatePages();
 });
+const clearForm = () => {
+    form.reset();
+    currentID.value = '-1';
+    currentIndex = submittedWastes.length;
+};
+const populateSelect = () => {
+    currentID.innerHTML = '<option value="-1">New</option>';
+    submittedWastes.map((e, i) => {
+        currentID.add(new Option(e['waste-identifier'], String(i)));
+    });
+};
 const fillFormFromWasteData = (data) => {
     Object.entries(data).forEach(([key, value]) => {
         const element = document.getElementById(key);
@@ -91,6 +113,8 @@ const getWasteDataFromForm = (form) => {
     const data = { 'listed-codes': [], toxic: false };
     const formFields = form.querySelectorAll('*[id]');
     formFields.forEach((e) => {
+        if (e.nodeName == 'SELECT')
+            return;
         const inputElement = e;
         const key = inputElement.id;
         if (inputElement.type == 'button')
@@ -126,10 +150,6 @@ const getWasteDataFromForm = (form) => {
     });
     return data;
 };
-generateButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    generatePages();
-});
 const generatePages = () => {
     svgBox.innerHTML = '';
     const wasteForms = [];
