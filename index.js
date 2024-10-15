@@ -106,6 +106,12 @@ const getWasteDataFromForm = (form) => {
             }
             return;
         }
+        if (key == 'ignitable' && inputElement.value != '')
+            data['listed-codes'].push('D001');
+        if (key == 'corrosive' && inputElement.value != '')
+            data['listed-codes'].push('D002');
+        if (key == 'reactive' && inputElement.value != '')
+            data['listed-codes'].push('D003');
         if (inputElement.id.includes('list-codes')) {
             const regex = /[F|U|P][0-9]{3}/gm;
             data[key] = inputElement.value;
