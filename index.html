@@ -10,194 +10,249 @@
 </head>
 
 <body>
-  <form id="waste-form" action="">
-    <div class="sticky">
-      <input type="submit" value="Submit as New">
-      <input type="button" value="Overwrite Current" id="overwrite">
-      <input type="button" value="Clear" id="clear">
-      <input type="button" value="Delete" id="delete">
-      <input type="button" value="Prev" id="prev">
-      <input type="button" value="New" id="current">
-      <input type="button" value="Next" id="next">
-      <input type="button" value="Generate" id="generate">
-    </div>
-    <div>
-      <label for="waste-identifier">Waste Identifier</label>
-      <input name="waste-identifier" id="waste-identifier" type="text" />
-    </div>
-    <div>
-      <label for="number-of-containers">Number of Containers</label>
-      <input name="number-of-containers" id="number-of-containers" type="number" value="1" />
-    </div>
-    <div>
-      <label for="waste-generator">Waste Generator</label>
-      <input name="waste-generator" id="waste-generator" type="text" value="J. Hudson" />
-    </div>
-    <div>
-      <label for="waste-business">Business</label>
-      <input name="waste-business" id="waste-business" type="text" />
-    </div>
-
-    <div>
-      <label for="waste-description">Waste Descirption</label>
-      <input name="waste-description" id="waste-description" type="text" />
-    </div>
-
-    <div>
-      <label for="waste-process">Waste Process</label>
-      <input name="waste-process" id="waste-process" type="text" />
-    </div>
-
-    <div>
-      <label for="waste-determination">Waste determination based on:</label>
-      <div>
-        <input type="radio" name="waste-determination" id="waste-determination-0" value="user-knowledge"
-          checked="checked" />
-        <label for="waste-determination">User Knowledge</label>
+  <div class="pad columns">
+    <form id="waste-form" action="">
+      <div class="sticky">
+        <input type="submit" value="Submit as New">
+        <input type="button" value="Overwrite Current" id="overwrite">
+        <input type="button" value="Clear" id="clear">
+        <input type="button" value="Delete" id="delete">
+        <input type="button" value="Prev" id="prev">
+        <input type="button" value="New" id="current">
+        <input type="button" value="Next" id="next">
+        <input type="button" value="Generate" id="generate">
       </div>
       <div>
-        <input type="radio" name="waste-determination" id="waste-determination-1" value="waste-analysis" />
-        <label for="waste-determination">Waste Analysis</label>
+        <label for="waste-identifier">Waste Identifier</label>
+        <input name="waste-identifier" id="waste-identifier" type="text" />
       </div>
       <div>
-        <label for="f-list-codes">F-list Codes and Description</label>
-        <input type="text" name="f-list-codes" id="f-list-codes"></input>
+        <label for="number-of-containers">Number of Containers</label>
+        <input name="number-of-containers" id="number-of-containers" type="number" value="1" />
       </div>
       <div>
-        <label for="p-list-codes">P-list Codes and Description</label>
-        <input type="text" name="p-list-codes" id="p-list-codes"></input>
+        <label for="waste-generator">Waste Generator</label>
+        <input name="waste-generator" id="waste-generator" type="text" value="J. Hudson" />
       </div>
       <div>
-        <label for="u-list-codes">U-list Codes and Description</label>
-        <input type="text" name="u-list-codes" id="u-list-codes"></input>
+        <label for="waste-business">Business</label>
+        <input name="waste-business" id="waste-business" type="text" value="Chemicals"/>
       </div>
       <div>
-        <label for="ignitable">Ignitable (D001) (Enter flashpoint if true)</label>
-        <input type="text" name="ignitable" id="ignitable" />
+        <label for="waste-description">Waste Descirption</label>
+        <input name="waste-description" id="waste-description" type="text" />
       </div>
       <div>
-        <label for="corrosive">Corrosive (D002) (Enter pH if true)</label>
-        <input type="text" name="corrosive" id="corrosive" />
+        <label for="waste-process">Waste Process</label>
+        <input name="waste-process" id="waste-process" type="text" />
       </div>
       <div>
-        <label for="reactive">Reactive (D003) (Enter statement from SDS if true)</label>
-        <input type="text" name="reactive" id="reactive" />
-      </div>
-      <h2>Toxic Codes</h2>
-      <div class="columns">
+        <label for="waste-determination">Waste determination based on:</label>
         <div>
-          <h2>Metals</h2>
-          <div>
-            <input type="checkbox" name="toxic-codes-0" id="toxic-codes-0" value="D004" />
-            <label for="toxic-codes-0">D004 Arsenic</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-1" value="D005" />
-            <label for="toxic-codes-1">D005 Barium</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-2" value="D006" />
-            <label for="toxic-codes-2">D006 Cadmium</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-3" value="D007" />
-            <label for="toxic-codes-3">D007 Chromium</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-4" value="D008" />
-            <label for="toxic-codes-4">D008 Lead</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-5" value="D009" />
-            <label for="toxic-codes-5">D009 Mercury</label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-6" value="D010" />
-            <label for="toxic-codes-6">D010 Selenium </label>
-          </div>
-          <div>
-            <input type="checkbox" name="toxic-codes" id="toxic-codes-7" value="D011" />
-            <label for="toxic-codes-7">D011 Silver</label>
-          </div>
+          <input type="radio" name="waste-determination" id="waste-determination-0" value="user-knowledge"
+            checked="checked" />
+          <label for="waste-determination">User Knowledge</label>
         </div>
         <div>
-          <h2>Volatiles</h2>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-8" value="D018" /><label
-              for="toxic-codes-8">D018 Benzene</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-9" value="D019" /><label
-              for="toxic-codes-9">D019 Carbon Tetrachloride</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-10" value="D021" /><label
-              for="toxic-codes-10">D021 Chlorobenzene</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-11" value="D022" /><label
-              for="toxic-codes-11">D022 Chloroform</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-12" value="D028" /><label
-              for="toxic-codes-12">D028 1,2‐Dichloroethane</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-13" value="D029" /><label
-              for="toxic-codes-13">D029 1,1‐Dichloroethylene</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-14" value="D035" /><label
-              for="toxic-codes-14">D035 Methyl Ethyl Ketone</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-15" value="D039" /><label
-              for="toxic-codes-15">D039 Tetrachloroethylene</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-16" value="D040" /><label
-              for="toxic-codes-16">D040 Trichloroethylene</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-17" value="D043" /><label
-              for="toxic-codes-17">D043 Vinyl Chloride</label></div>
+          <input type="radio" name="waste-determination" id="waste-determination-1" value="waste-analysis" />
+          <label for="waste-determination">Waste Analysis</label>
         </div>
         <div>
-          <h2>Semi-Volatiles</h2>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-18" value="D023" /><label
-              for="toxic-codes-18">D023 o‐Cresol</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-19" value="D024" /><label
-              for="toxic-codes-19">D024 m‐Cresol (200.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-20" value="D025" /><label
-              for="toxic-codes-20">D025 p‐Cresol (200.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-21" value="D026" /><label
-              for="toxic-codes-21">D026 Cresol ‐ total (200.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-22" value="D027" /><label
-              for="toxic-codes-22">D027 1,4‐Dichlorobenzene (7.5)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-23" value="D030" /><label
-              for="toxic-codes-23">D030 2,4‐Dinitrotoluene (0.13)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-24" value="D032" /><label
-              for="toxic-codes-24">D032 Hexachlorobenzene (0.13)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-25" value="D033" /><label
-              for="toxic-codes-25">D033 Hexachlorobutadiene (0.5)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-26" value="D034" /><label
-              for="toxic-codes-26">D034 Hexachloroethane (3.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-27" value="D036" /><label
-              for="toxic-codes-27">D036 Nitrobenzene (2.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-28" value="D037" /><label
-              for="toxic-codes-28">D037 Pentachlorophenol</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-29" value="D038" /><label
-              for="toxic-codes-29">D038 Pyridine</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-30" value="D041" /><label
-              for="toxic-codes-30">D041 2,4,5‐Trichlorophenol</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-31" value="D042" /><label
-              for="toxic-codes-31">D042 2,4,6‐Trichlorophenol</label></div>
-
+          <label for="f-list-codes">F-list Codes and Description</label>
+          <input type="text" name="f-list-codes" id="f-list-codes"></input>
         </div>
         <div>
-          <h2>Pesticides/Herbicides</h2>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-32" value="D020" /><label
-              for="toxic-codes-32">D020 Chlordane (0.03)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-33" value="D012" /><label
-              for="toxic-codes-33">D012 Endrin (0.02)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-34" value="D031" /><label
-              for="toxic-codes-34">D031 Heptachlor + epoxide (0.008)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-35" value="D013" /><label
-              for="toxic-codes-35">D013 Lindane (0.4)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-36" value="D014" /><label
-              for="toxic-codes-36">D014 Methoxychlor (10.0)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-37" value="D015" /><label
-              for="toxic-codes-37">D015 Toxaphene (0.5)</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-38" value="D016" /><label
-              for="toxic-codes-38">D016 2,4‐D</label></div>
-          <div><input type="checkbox" name="toxic-codes" id="toxic-codes-39" value="D017" /><label
-              for="toxic-codes-39">D017 2,4,5‐TP (Silvex)</label></div>
+          <label for="p-list-codes">P-list Codes and Description</label>
+          <input type="text" name="p-list-codes" id="p-list-codes"></input>
+        </div>
+        <div>
+          <label for="u-list-codes">U-list Codes and Description</label>
+          <input type="text" name="u-list-codes" id="u-list-codes"></input>
+        </div>
+        <div>
+          <label for="ignitable">Ignitable (D001) (Enter flashpoint if true)</label>
+          <input type="text" name="ignitable" id="ignitable" />
+        </div>
+        <div>
+          <label for="corrosive">Corrosive (D002) (Enter pH if true)</label>
+          <input type="text" name="corrosive" id="corrosive" />
+        </div>
+        <div>
+          <label for="reactive">Reactive (D003) (Enter statement from SDS if true)</label>
+          <input type="text" name="reactive" id="reactive" />
+        </div>
+        <h2>Toxic Codes</h2>
+        <div class="columns">
+          <div>
+            <h2>Metals</h2>
+            <div>
+              <input type="checkbox" name="toxic-codes-0" id="toxic-codes-0" value="D004" />
+              <label for="toxic-codes-0">D004 Arsenic</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-1" value="D005" />
+              <label for="toxic-codes-1">D005 Barium</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-2" value="D006" />
+              <label for="toxic-codes-2">D006 Cadmium</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-3" value="D007" />
+              <label for="toxic-codes-3">D007 Chromium</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-4" value="D008" />
+              <label for="toxic-codes-4">D008 Lead</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-5" value="D009" />
+              <label for="toxic-codes-5">D009 Mercury</label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-6" value="D010" />
+              <label for="toxic-codes-6">D010 Selenium </label>
+            </div>
+            <div>
+              <input type="checkbox" name="toxic-codes" id="toxic-codes-7" value="D011" />
+              <label for="toxic-codes-7">D011 Silver</label>
+            </div>
+          </div>
+          <div>
+            <h2>Volatiles</h2>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-8" value="D018" /><label
+                for="toxic-codes-8">D018 Benzene</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-9" value="D019" /><label
+                for="toxic-codes-9">D019 Carbon Tetrachloride</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-10" value="D021" /><label
+                for="toxic-codes-10">D021 Chlorobenzene</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-11" value="D022" /><label
+                for="toxic-codes-11">D022 Chloroform</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-12" value="D028" /><label
+                for="toxic-codes-12">D028 1,2‐Dichloroethane</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-13" value="D029" /><label
+                for="toxic-codes-13">D029 1,1‐Dichloroethylene</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-14" value="D035" /><label
+                for="toxic-codes-14">D035 Methyl Ethyl Ketone</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-15" value="D039" /><label
+                for="toxic-codes-15">D039 Tetrachloroethylene</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-16" value="D040" /><label
+                for="toxic-codes-16">D040 Trichloroethylene</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-17" value="D043" /><label
+                for="toxic-codes-17">D043 Vinyl Chloride</label></div>
+          </div>
+          <div>
+            <h2>Semi-Volatiles</h2>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-18" value="D023" /><label
+                for="toxic-codes-18">D023 o‐Cresol</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-19" value="D024" /><label
+                for="toxic-codes-19">D024 m‐Cresol (200.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-20" value="D025" /><label
+                for="toxic-codes-20">D025 p‐Cresol (200.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-21" value="D026" /><label
+                for="toxic-codes-21">D026 Cresol ‐ total (200.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-22" value="D027" /><label
+                for="toxic-codes-22">D027 1,4‐Dichlorobenzene (7.5)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-23" value="D030" /><label
+                for="toxic-codes-23">D030 2,4‐Dinitrotoluene (0.13)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-24" value="D032" /><label
+                for="toxic-codes-24">D032 Hexachlorobenzene (0.13)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-25" value="D033" /><label
+                for="toxic-codes-25">D033 Hexachlorobutadiene (0.5)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-26" value="D034" /><label
+                for="toxic-codes-26">D034 Hexachloroethane (3.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-27" value="D036" /><label
+                for="toxic-codes-27">D036 Nitrobenzene (2.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-28" value="D037" /><label
+                for="toxic-codes-28">D037 Pentachlorophenol</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-29" value="D038" /><label
+                for="toxic-codes-29">D038 Pyridine</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-30" value="D041" /><label
+                for="toxic-codes-30">D041 2,4,5‐Trichlorophenol</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-31" value="D042" /><label
+                for="toxic-codes-31">D042 2,4,6‐Trichlorophenol</label></div>
+          </div>
+          <div>
+            <h2>Pesticides/Herbicides</h2>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-32" value="D020" /><label
+                for="toxic-codes-32">D020 Chlordane (0.03)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-33" value="D012" /><label
+                for="toxic-codes-33">D012 Endrin (0.02)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-34" value="D031" /><label
+                for="toxic-codes-34">D031 Heptachlor + epoxide (0.008)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-35" value="D013" /><label
+                for="toxic-codes-35">D013 Lindane (0.4)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-36" value="D014" /><label
+                for="toxic-codes-36">D014 Methoxychlor (10.0)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-37" value="D015" /><label
+                for="toxic-codes-37">D015 Toxaphene (0.5)</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-38" value="D016" /><label
+                for="toxic-codes-38">D016 2,4‐D</label></div>
+            <div><input type="checkbox" name="toxic-codes" id="toxic-codes-39" value="D017" /><label
+                for="toxic-codes-39">D017 2,4,5‐TP (Silvex)</label></div>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
+    <div class="preview-box">
+      <svg height="2in" width="4in" xmlns="http://www.w3.org/2000/svg">
+        <style type="text/css">
+          #label-preview text {
+            font-family: Arial;
+            font-size: 8pt;
+            dominant-baseline: hanging;
+          }
 
-  </form>
+          #label-preview path {
+            stroke: black;
+          }
+
+          #label-preview .haz-title {
+            font-size: 10.5pt;
+            font-weight: bold;
+            fill: red;
+          }
+
+          #label-preview .non-haz-title {
+            font-size: 14pt;
+            font-weight: bold;
+            fill: #00B050
+          }
+
+          #label-preview .haz-sub-title {
+            font-size: 7pt;
+            font-weight: bold;
+            fill: red;
+          }
+
+          #label-preview .mailing {
+            font-weight: bold;
+          }
+
+          #label-preview .epa-codes-header {
+            font-family: Calibri;
+            font-size: 8pt;
+          }
+
+          #label-preview .epa-box {
+            fill: none;
+            stroke: black;
+          }
+
+          #label-preview .epa-box-codes {
+            text-anchor: middle;
+          }
+        </style>
+        <rect x="0" y="0" width="4in" height="2in" fill="none" stroke="black" rx="15"/>
+        <g id="label-preview">
+
+        </g>
+      </svg>
+      <div>
+        <h2>Number of label pages needed: <span id="num-pages">1</span></h2>
+      </div>
+    </div>
+  </div>
   <div id="svg-box">
 
   </div>

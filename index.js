@@ -3,6 +3,14 @@ import nonhazardousLabel from './src/nonhazardousLabel.js';
 import labelPage from './src/labelPage.js';
 import wasteForm from './src/wasteForm.js';
 const form = document.getElementById('waste-form');
+form.addEventListener('change', (e) => {
+    const preview = document.getElementById('label-preview');
+    const previewData = getWasteDataFromForm(form);
+    const isHazardous = checkHazardous(previewData);
+    preview.innerHTML = isHazardous
+        ? hazardousLabel(previewData)
+        : nonhazardousLabel(previewData);
+});
 const svgBox = document.getElementById('svg-box');
 const generateButton = document.getElementById('generate');
 const currentID = document.getElementById('current');
@@ -10,6 +18,7 @@ const nextButton = document.getElementById('next');
 const prevButton = document.getElementById('prev');
 const clearButton = document.getElementById('clear');
 const deleteButton = document.getElementById('delete');
+const numPages = document.getElementById('num-pages');
 const overwriteButton = document.getElementById('overwrite');
 let currentIndex = 0;
 let submittedWastes = [];
@@ -38,7 +47,6 @@ deleteButton.addEventListener('click', (e) => {
 nextButton.addEventListener('click', (e) => {
     if (currentIndex < submittedWastes.length - 1) {
         currentIndex++;
-        console.log(String(currentIndex + 1));
         fillFormFromWasteData(submittedWastes[currentIndex]);
         currentID.value = String(currentIndex + 1);
     }
@@ -46,7 +54,6 @@ nextButton.addEventListener('click', (e) => {
 prevButton.addEventListener('click', (e) => {
     if (currentIndex > 0) {
         currentIndex--;
-        console.log(currentIndex + 1);
         fillFormFromWasteData(submittedWastes[currentIndex]);
         currentID.value = String(currentIndex + 1);
     }
@@ -54,6 +61,7 @@ prevButton.addEventListener('click', (e) => {
 overwriteButton.addEventListener('click', (e) => {
     const data = getWasteDataFromForm(form);
     submittedWastes[currentIndex] = data;
+    generatePages();
 });
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -62,9 +70,9 @@ form.addEventListener('submit', function (e) {
     form.reset();
     currentID.value = 'New';
     currentIndex = submittedWastes.length;
+    generatePages();
 });
 const fillFormFromWasteData = (data) => {
-    console.log(data);
     Object.entries(data).forEach(([key, value]) => {
         const element = document.getElementById(key);
         if (element == null)
@@ -85,6 +93,8 @@ const getWasteDataFromForm = (form) => {
     formFields.forEach((e) => {
         const inputElement = e;
         const key = inputElement.id;
+        if (inputElement.type == 'button')
+            return;
         if (inputElement.type == 'checkbox') {
             if (inputElement.checked == true) {
                 data[key] = inputElement.value;
@@ -112,6 +122,9 @@ const getWasteDataFromForm = (form) => {
 };
 generateButton.addEventListener('click', (e) => {
     e.preventDefault();
+    generatePages();
+});
+const generatePages = () => {
     svgBox.innerHTML = '';
     const wasteForms = [];
     const labels = [];
@@ -127,10 +140,9 @@ generateButton.addEventListener('click', (e) => {
             }
         }
     });
-    wasteForms.forEach((form) => {
-        svgBox.innerHTML += form;
-    });
+    let labelPageCount = 0;
     for (let i = 0; i < labels.length; i += 10) {
+        labelPageCount++;
         const labelBuilder = [];
         for (let j = 0; j < 10; j++) {
             if (i + j < labels.length) {
@@ -139,9 +151,12 @@ generateButton.addEventListener('click', (e) => {
         }
         svgBox.innerHTML += labelPage(labelBuilder);
     }
-});
+    wasteForms.forEach((form) => {
+        svgBox.innerHTML += form;
+    });
+    numPages.innerHTML = String(labelPageCount);
+};
 const checkHazardous = (data) => {
-    console.log(data);
     const keys = Object.entries(data);
     const isHazardous = keys.reduce((acc, [key, value]) => {
         if (key.includes('codes') ||
