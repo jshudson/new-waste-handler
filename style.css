@@ -34,7 +34,6 @@ form {
   display: flex;
   font-size: 0.8em;
 }
-textarea,
 input[type='text'],
 input[type='number'] {
   min-height: 1.5em;
@@ -60,7 +59,10 @@ input[type='number'] {
   margin: 0;
 }
 @media print {
-  form {
+  #UI {
     display: none;
+  }
+  .print-page {
+    border: none
   }
 }

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="pad columns">
+  <div id="UI" class="pad columns">
     <form id="waste-form" action="">
       <div class="sticky">
         <input type="submit" value="Submit as New">
@@ -18,7 +18,9 @@
         <input type="button" value="Clear" id="clear">
         <input type="button" value="Delete" id="delete">
         <input type="button" value="Prev" id="prev">
-        <select id="current"><option>New</option></select>
+        <select id="current">
+          <option>New</option>
+        </select>
         <!-- <input type="button" value="New" id="current"> -->
         <input type="button" value="Next" id="next">
         <!-- <input type="button" value="Generate" id="generate"> -->
@@ -37,14 +39,14 @@
       </div>
       <div>
         <label for="waste-business">Business</label>
-        <input name="waste-business" id="waste-business" type="text" value="Chemicals"/>
+        <input name="waste-business" id="waste-business" type="text" value="Chemicals" />
       </div>
       <div>
-        <label for="waste-description">Waste Descirption</label>
+        <label for="waste-description">Waste Description</label>
         <input name="waste-description" id="waste-description" type="text" />
       </div>
       <div>
-        <label for="waste-process">Waste Process</label>
+        <label for="waste-process">Process Generating Waste</label>
         <input name="waste-process" id="waste-process" type="text" />
       </div>
       <div>
@@ -196,7 +198,7 @@
       </div>
     </form>
     <div class="preview-box">
-      <svg height="2in" width="4in" xmlns="http://www.w3.org/2000/svg">
+      <svg height="2.04in" width="4.04in" xmlns="http://www.w3.org/2000/svg">
         <style type="text/css">
           #label-preview text {
             font-family: Arial;
@@ -243,10 +245,21 @@
           #label-preview .epa-box-codes {
             text-anchor: middle;
           }
-        </style>
-        <rect x="0" y="0" width="4in" height="2in" fill="none" stroke="black" rx="15"/>
-        <g id="label-preview">
 
+          #label-preview rect {
+            stroke-width: "0.02in";
+          }
+        </style>
+        <rect x="0.01in" y="0.01in" width="4in" height="2in" fill="none" stroke="black" rx="15px" ry="15px" />
+        <g id="label-preview">
+          <text class="non-haz-title" x="11.911" y="3.509">NONHAZARDOUS WASTE</text>
+          <text class="mailing" x="11.639" y="51.076">Milliken Chemical Regulatory Affairs, M-209</text>
+          <text x="11.451" y="76.702">Generator:</text>
+          <text x="11.880" y="102.303">Identifier:</text>
+          <text x="11.707" y="127.873">Description:</text>
+          <path d="M 64.960,86.702 H 253.346" />
+          <path d="M 57.760,112.303 H 253.346" />
+          <rect class="epa-box" x="265.026" y="49.602" width="108.640" height="70.426" />
         </g>
       </svg>
       <div>

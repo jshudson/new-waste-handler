@@ -2,7 +2,7 @@ const wasteForm = (data) => {
     return `<div class="print-page">
   <svg height="11in" width="8.5in" xmlns="http://www.w3.org/2000/svg">
     <style type="text/css">
-      * {
+      #waste-page * {
         stroke-linecap: butt
       }
 

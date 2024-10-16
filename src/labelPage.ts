@@ -4,7 +4,7 @@ const labelPage = (labels: string[]) => {
   return `<div class="print-page">
   <svg height="11in" width="8.5in" xmlns="http://www.w3.org/2000/svg">
     <style type="text/css">
-      * {
+      #label-page * {
         stroke-linecap: butt;
         stroke-width: 0.5pt;
       }
